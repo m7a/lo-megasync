@@ -8,7 +8,7 @@ encoding	utf8
 compliance	public
 lang		en
 creation	2017/04/02 00:33:14
-version		1.0.0.1
+version		1.0.0.2
 copyright	Copyright (c) 2017 Ma_Sys.ma.
 		For furhter info send an e-mail to Ma_Sys.ma@web.de.
 
@@ -22,7 +22,11 @@ device.
 
 -----------------------------------------------------------[ Getting Started ]--
 
-The image `masysmalocal/megasync` may be built locally using `make build`.
+Obtian the scripts from Github as follows
+
+	git clone https://github.com/m7a/megasync.git
+
+The image `masysmalocal/megasync` may then be built locally using `make build`.
 A Docker Hub automated build is not available due to ``exec format error''
 if one attempts to automatically build this on Docker Hub.
 
