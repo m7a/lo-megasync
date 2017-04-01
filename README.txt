@@ -22,15 +22,16 @@ device.
 
 -----------------------------------------------------------[ Getting Started ]--
 
-The image `masysma/megasync` may be obtained from Docker\ Hub(...) or built
-locally using `make build` (builds it as `masysmalocal/megasync`.
+The image `masysmalocal/megasync` may be built locally using `make build`.
+A Docker Hub automated build is not available due to ``exec format error''
+if one attempts to automatically build this on Docker Hub.
 
 You can run it as follows:
 
 	docker run --restart=always -d -p 127.0.0.1:5900:5900 \
 				-v ...:/fs/backup \
 				-v ...:/home/linux-fan/.local/share/data \
-				masysma[local]/megasync
+				masysmalocal/megasync
 
 Volumes are as follows:
 
