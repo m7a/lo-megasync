@@ -41,3 +41,6 @@ install_upgrader:
 	dpkg -i mdvl-trivial-automatic-update*.deb
 	systemctl enable mdvl-trivial-automatic-update.timer
 	systemctl start mdvl-trivial-automatic-update.timer
+
+x_update_readme:
+	cp /data/main/man/d5i/37/megasync_docker_arm.d5i README.txt
