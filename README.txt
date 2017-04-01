@@ -8,7 +8,7 @@ encoding	utf8
 compliance	public
 lang		en
 creation	2017/04/02 00:33:14
-version		1.0.0.0
+version		1.0.0.1
 copyright	Copyright (c) 2017 Ma_Sys.ma.
 		For furhter info send an e-mail to Ma_Sys.ma@web.de.
 
@@ -39,6 +39,11 @@ Volumes are as follows:
    Map the directory to be synced to this node.
 `/home/linux-fan/.local/share/data`
    Map a directory to contain the Megasync configuration to this one.
+
+For successful read/write access from inside and outside the container, the
+files from the shared volumes should belong to user and group with ID 1024.
+If you want to use a different ID, change the `Dockerfile` accordingly and
+rebuild the image.
 
 In order to graphically interact with the client, connect via VNC like this:
 
