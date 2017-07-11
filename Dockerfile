@@ -45,6 +45,10 @@ RUN \
 	echo deb https://mega.nz/linux/MEGAsync/Raspbian_8.0/ ./ > \
 				/etc/apt/sources.list.d/megasync_tmp.list && \
 	apt-get update && \
+	# Hack to prevent APT command from failing because the package attempts
+	# to modify a kernel parameter.
+	mv /sbin/sysctl /sbin/sysctl.bak && \
+	cp /bin/true /sbin/sysctl && \
 	# force to skip signature check once
 	apt-get install --allow-unauthenticated -y megasync && \
 	rm /etc/apt/sources.list.d/megasync_tmp.list && \
