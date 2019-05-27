@@ -15,8 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# TODO TEST upgrader thingy...
-
 CONSTPARAM = -p 127.0.0.1:5900:5900 -v /home/backupuser/backup:/fs/backup:ro \
 		-v /home/backupuser/megaconf:/home/linux-fan/.local/share/data \
 		masysmalocal/megasync
@@ -24,12 +22,12 @@ CONSTPARAM = -p 127.0.0.1:5900:5900 -v /home/backupuser/backup:/fs/backup:ro \
 build:
 	docker build -t masysmalocal/megasync .
 
-armhf_debian_8.tar.xz:
-	docker pull armhf/debian:jessie
-	docker save armhf/debian:jessie | xz -9 > armhf_debian_8.tar.xz
+armhf_debian_9.tar.xz:
+	docker pull armhf/debian:stretch
+	docker save armhf/debian:stretch | xz -9 > armhf_debian_9.tar.xz
 
 restore:
-	unxz < armhf_debian_8.tar.xz | docker load
+	unxz < armhf_debian_9.tar.xz | docker load
 
 establish_run:
 	docker run --restart=always --log-driver=syslog -d $(CONSTPARAM)

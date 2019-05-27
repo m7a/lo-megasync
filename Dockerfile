@@ -1,8 +1,8 @@
-FROM armhf/debian:jessie
+FROM armhf/debian:stretch
 LABEL maintainer "Linux-Fan <Ma_Sys.ma@web.de>"
 
 # Dockerfile and Supporting files to run megasync on armhf devices,
-# Copyright (c) 2017 Ma_Sys.ma.
+# Copyright (c) 2017, 2019 Ma_Sys.ma.
 # For further info send an e-mail to Ma_Sys.ma@web.de.
 #
 # This program is free software: you can redistribute it and/or modify
@@ -24,10 +24,10 @@ COPY mdvl-trivial-automatic-update*.deb /var/tmp
 ARG MA_DEBIAN_MIRROR=http://192.168.1.16/debian
 
 RUN \
-	echo deb $MA_DEBIAN_MIRROR jessie main > /etc/apt/sources.list && \
-	echo deb $MA_DEBIAN_MIRROR jessie-updates main \
+	echo deb $MA_DEBIAN_MIRROR stretch main > /etc/apt/sources.list && \
+	echo deb $MA_DEBIAN_MIRROR stretch-updates main \
 						>> /etc/apt/sources.list && \
-	echo deb http://security.debian.org/ jessie/updates main \
+	echo deb http://security.debian.org/ stretch/updates main \
 						>> /etc/apt/sources.list && \
 	chmod +x /usr/local/bin/megasync_ctrl.sh && \
 	useradd -u 1024 -m linux-fan && \
@@ -40,14 +40,13 @@ RUN \
 	chmod +x /etc/X11/icewm/startup && \
 	apt-get update && \
 	apt-get -y dist-upgrade && \
-	apt-get install -y apt-transport-https tightvncserver icewm \
+	apt-get install -y apt-transport-https tightvncserver icewm procps \
 				rxvt-unicode-lite unattended-upgrades && \
-	echo deb https://mega.nz/linux/MEGAsync/Raspbian_8.0/ ./ > \
+	echo deb https://mega.nz/linux/MEGAsync/Raspbian_9.0/ ./ > \
 				/etc/apt/sources.list.d/megasync_tmp.list && \
 	apt-get update && \
 	# Hack to prevent APT command from failing because the package attempts
 	# to modify a kernel parameter.
-	mv /sbin/sysctl /sbin/sysctl.bak && \
 	cp /bin/true /sbin/sysctl && \
 	# force to skip signature check once
 	apt-get install --allow-unauthenticated -y megasync && \

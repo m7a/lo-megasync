@@ -2,23 +2,20 @@
 
 name		megasync_docker_arm
 section		37
-description	Running Megasync on amhf using Docker
+description	Running Megasync on armhf using Docker
 tags		blog docker arm megasync
 encoding	utf8
 compliance	public
 lang		en
 creation	2017/04/02 00:33:14
-version		1.0.0.2
-copyright	Copyright (c) 2017 Ma_Sys.ma.
+version		1.1.0
+copyright	Copyright (c) 2017, 2019 Ma_Sys.ma.
 		For furhter info send an e-mail to Ma_Sys.ma@web.de.
 
 -------------------------------------------------------------[ What is this? ]--
 
 Using the image presented here, you can synchronize files with
 Mega(http://mega.co.nz) using a Docker container on an ARM device.
-Modifying the `Dockerfile` to build on top of `debian:jessie` instead of
-`armhf/debian:jessie` yields an image suitable for running on an AMD64
-device.
 
 -----------------------------------------------------------[ Getting Started ]--
 
@@ -73,3 +70,6 @@ contents and use `dpkg-deb` or
 MDPC(https://lists.debian.org/debian-user/2013/08/msg00042.html). If you
 use MDPC, the package belongs to the ``raw'' category and the files should
 be in a directory called after the package name.
+
+_TODO Might want to switch to systemd to manage the different processes inside
+the container_

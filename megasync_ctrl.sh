@@ -1,5 +1,5 @@
 #!/bin/bash -e
-# Ma_Sys.ma Mega Sync Control Script 1.0.0.0, Copyright (c) 2017 Ma_Sys.ma.
+# Ma_Sys.ma Mega Sync Control Script 1.1.1, Copyright (c) 2017, 2019 Ma_Sys.ma.
 # For further info send an e-mail to Ma_Sys.ma@web.de
 #
 # This program is free software: you can redistribute it and/or modify
@@ -135,8 +135,9 @@ mahealthcheck() {
 mafindproc() {
 	psl="$(COLUMNS=512 ps -A -o pid,args | sed 's/^ \+//g')"
 	pid_megasync="$(echo "$psl" | grep -E 'megasync$' | cut -d" " -f1)"
-	pid_icewm="$(echo "$psl"    | grep -E 'icewm$'    | cut -d" " -f1)"
-	pid_vnc="$(echo "$psl"      | grep -F "Xtightvnc" | cut -d" " -f1)"
+	pid_icewm="$(echo "$psl" | grep -E 'icewm( --notify)?$' | \
+								cut -d" " -f1)"
+	pid_vnc="$(echo "$psl" | grep -F "Xtightvnc" | cut -d" " -f1)"
 }
 
 # $1: descr, $2 pid
