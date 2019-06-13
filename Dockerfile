@@ -51,6 +51,9 @@ RUN \
 	# force to skip signature check once
 	apt-get install --allow-unauthenticated -y megasync && \
 	rm /etc/apt/sources.list.d/megasync_tmp.list && \
+	# delete created list because we cannot update on it without a key
+	# (which does not seem to be available anywhere...)
+	rm /etc/apt/sources.list.d/megasync.list && \
 	# install auto-upgrade script.
 	dpkg -i /var/tmp/mdvl-trivial-automatic-update*.deb && \
 	rm /var/tmp/mdvl-trivial-automatic-update*.deb
