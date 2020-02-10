@@ -10,6 +10,7 @@ x-masysma-copyright: |
   Copyright (c) 2017, 2019 Ma_Sys.ma.
   For furhter info send an e-mail to Ma_Sys.ma@web.de.
 x-masysma-repository: https://www.github.com/m7a/lo-megasync
+x-masysma-website: https://masysma.lima-city.de/32/megasync.xhtml
 x-masysma-owned: 1
 ---
 What is this?
