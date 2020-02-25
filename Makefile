@@ -1,5 +1,5 @@
 # Dockerfile and Supporting files to run megasync on armhf devices,
-# Copyright (c) 2017 Ma_Sys.ma.
+# Copyright (c) 2017, 2020 Ma_Sys.ma.
 # For further info send an e-mail to Ma_Sys.ma@web.de.
 #
 # This program is free software: you can redistribute it and/or modify
@@ -17,20 +17,24 @@
 
 CONSTPARAM = -p 127.0.0.1:5900:5900 -v /home/backupuser/backup:/fs/backup:ro \
 		-v /home/backupuser/megaconf:/home/linux-fan/.local/share/data \
-		masysmalocal/megasync
+		armhf/masysmalocal/megasync
 
 build:
-	docker build -t masysmalocal/megasync .
+	docker build -t armhf/masysmalocal/megasync .
 
-armhf_debian_9.tar.xz:
-	docker pull armhf/debian:stretch
-	docker save armhf/debian:stretch | xz -9 > armhf_debian_9.tar.xz
+build_ma:
+	docker build -t armhf/masysmalocal/megasync \
+		--build-arg MA_DEBIAN_MIRROR=http://192.168.1.16/debian .
+
+save:
+	docker save armhf/masysmalocal/megasync | pv | \
+				xz -9 -T 8 > armhf_masysmalocal_megasync.tar.xz
 
 restore:
-	unxz < armhf_debian_9.tar.xz | docker load
+	pv armhf_masysmalocal_megasync.tar.xz | unxz | docker load 
 
 establish_run:
-	docker run --restart=always --log-driver=syslog -d $(CONSTPARAM)
+	docker run --restart=unless-stopped --log-driver=syslog -d $(CONSTPARAM)
 
 run_debug:
 	docker run -it $(CONSTPARAM)
@@ -39,6 +43,3 @@ install_upgrader:
 	dpkg -i mdvl-trivial-automatic-update*.deb
 	systemctl enable mdvl-trivial-automatic-update.timer
 	systemctl start mdvl-trivial-automatic-update.timer
-
-x_update_readme:
-	cp /data/main/man/d5i/37/megasync_docker_arm.d5i README.txt
