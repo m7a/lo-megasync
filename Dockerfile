@@ -67,6 +67,7 @@ RUN \
 	# to modify a kernel parameter.
 	cp /bin/true /sbin/sysctl; \
 	apt-get install -y megasync; \
+	rm /etc/apt/sources.list.d/megasync_tmp.list; \
 	# install auto-upgrade script.
 	# rm would be pointless because its in the layers anyways
 	dpkg -i /var/tmp/mdvl-trivial-automatic-update*.deb
