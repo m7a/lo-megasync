@@ -55,24 +55,11 @@ In order to graphically interact with the client, connect via VNC like this:
 About the Upgrader
 ==================
 
-An experimental package called `mdvl-trival-automatic-update` is supplied as
+A binary version of `mdvl-trival-automatic-update` is supplied as
 part of this repository. It is installed inside the container as to keep a
-24/7-running container up to date automatically. This script extends
-`unattended-upgrades` by a means of automatically chosing between multiple
-mirror hosts. By default, it checks for `192.168.1.16` to be online and if that
-is not the case, it uses `ftp.de.debian.org` instead. This way, you can run
-your own local mirror to upgrade your server on a best-effort basis: If the
-upgrade happens while your local mirror is online, it will chose the local
-mirror. If the upgrade happens while the local mirror is not reachable, the
-process will take the upgrade from the internet.
-
-If you wonder about supplying a `.deb` package as the “source” code – there is
-nothing more to it than the files contained so there is no need to provide a
-“separate” source code. If you want to rebuild the `.deb`, extract it's
-contents and use `dpkg-deb` or
-[MDPC](https://lists.debian.org/debian-user/2013/08/msg00042.html).
-If you use MDPC, the package belongs to the “raw” category and the files should
-be in a directory called after the package name.
+24/7-running container up to date automatically.
+Check [trivial_automatic_update(32)](trivial_automatic_update.xhtml) for further
+details including a link to the package's source code repository.
 
 Newer Ideas
 ===========
