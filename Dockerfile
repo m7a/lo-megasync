@@ -33,6 +33,8 @@ RUN \
 
 FROM ${MA_TARGET_ARCH}debian:buster
 ARG MA_DEBIAN_MIRROR=http://ftp.de.debian.org/debian
+# alt. Debian_10.0
+ARG MA_TARGET_DEB=Raspbian_10.0
 LABEL maintainer "Linux-Fan <Ma_Sys.ma@web.de>"
 COPY --from=qemustatic /usr/bin/qemu-arm-static /usr/bin/qemu-arm-static
 COPY megasync_ctrl.sh /usr/local/bin
@@ -58,9 +60,9 @@ RUN \
 	apt-get install -y apt-transport-https tightvncserver icewm procps \
 			rxvt-unicode-lite unattended-upgrades gnupg wget \
 			xfonts-base; \
-	echo deb https://mega.nz/linux/MEGAsync/Raspbian_10.0/ ./ > \
+	echo deb https://mega.nz/linux/MEGAsync/${MA_TARGET_DEB}/ ./ > \
 				/etc/apt/sources.list.d/megasync_tmp.list; \
-	wget -O- https://mega.nz/linux/MEGAsync/Raspbian_10.0/Release.key | \
+	wget -O- https://mega.nz/linux/MEGAsync/${MA_TARGET_DEB}/Release.key | \
 								apt-key add -; \
 	apt-get update; \
 	# Hack to prevent APT command from failing because the package attempts
