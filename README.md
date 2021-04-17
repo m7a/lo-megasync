@@ -22,6 +22,7 @@ Using the image presented here, you can synchronize files with
 Note that this container uses Mega's GUI version. For most automation purposes,
 it might be advisable to use Mega's commandline client instead. IIRC, at the
 time of creating this container, the commandline client was not available yet.
+See <https://github.com/meganz/MEGAcmd>
 
 Getting Started
 ===============
