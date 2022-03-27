@@ -39,7 +39,7 @@ You can run it as follows:
 	docker run --restart=unless-stopped -d -p 127.0.0.1:5900:5900 \
 				-v ...:/fs/backup \
 				-v ...:/home/linux-fan/.local/share/data \
-				masysmalocal/megasync
+				armhf/masysmalocal/megasync
 
 Volumes are as follows:
 
@@ -56,6 +56,14 @@ the image.
 In order to graphically interact with the client, connect via VNC like this:
 
 	vncviewer localhost:0
+
+For amd64 Systems
+=================
+
+It seems the ARM version is stuck at Debian Buster, hence the Debian Bullseye
+variant is only available as a separate Dockerfile for amd64 systems. Build it
+with `make build_amd64` and run it just like the armhf variant except for
+leaving out the prefix `armhf/` in the image name.
 
 About the Upgrader
 ==================

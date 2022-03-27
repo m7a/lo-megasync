@@ -1,5 +1,5 @@
 # Dockerfile and Supporting files to run megasync on armhf devices,
-# Copyright (c) 2017, 2020 Ma_Sys.ma.
+# Copyright (c) 2017, 2020, 2022 Ma_Sys.ma.
 # For further info send an e-mail to Ma_Sys.ma@web.de.
 #
 # This program is free software: you can redistribute it and/or modify
@@ -22,8 +22,15 @@ CONSTPARAM = -p 127.0.0.1:5900:5900 -v /home/backupuser/backup:/fs/backup:ro \
 build:
 	docker build -t armhf/masysmalocal/megasync .
 
+build_amd64:
+	docker build -f Dockerfile_amd64 -t masysmalocal/megasync .
+
 build_ma:
 	docker build -t armhf/masysmalocal/megasync \
+		--build-arg MA_DEBIAN_MIRROR=http://192.168.1.16/debian .
+
+build_ma_amd64:
+	docker build -f Dockerfile_amd64 -t masysmalocal/megasync \
 		--build-arg MA_DEBIAN_MIRROR=http://192.168.1.16/debian .
 
 save:
@@ -35,6 +42,13 @@ restore:
 
 establish_run:
 	docker run --restart=unless-stopped --log-driver=syslog -d $(CONSTPARAM)
+
+establish_run_amd64:
+	docker run --restart=unless-stopped --name=ma-d-megasync \
+		--log-driver=syslog -d -p 127.0.0.1:5900:5900 \
+		-v /home/backupuser/backup:/fs/backup:ro \
+		-v /home/backupuser/megaconf:/home/linux-fan/.local/share/data \
+		masysmalocal/megasync
 
 run_debug:
 	docker run -it $(CONSTPARAM)
