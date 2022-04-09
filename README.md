@@ -74,6 +74,10 @@ part of this repository. It is installed inside the container as to keep a
 Check [trivial_automatic_update(32)](trivial_automatic_update.xhtml) for further
 details including a link to the package's source code repository.
 
+Note that directory `old` contains an old version which is suitable to be used
+with Debian Bullseye and earlier. The new version (1.1.3 onwards) uses the new
+style format for security upgrades.
+
 Newer Ideas
 ===========
 

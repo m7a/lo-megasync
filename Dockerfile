@@ -1,5 +1,5 @@
 # Dockerfile and Supporting files to run megasync on armhf devices,
-# Copyright (c) 2017, 2019, 2020 Ma_Sys.ma.
+# Copyright (c) 2017, 2019, 2020, 2022 Ma_Sys.ma.
 # For further info send an e-mail to Ma_Sys.ma@web.de.
 #
 # This program is free software: you can redistribute it and/or modify
@@ -38,9 +38,10 @@ ARG MA_TARGET_DEB=Raspbian_10.0
 LABEL maintainer "Linux-Fan <Ma_Sys.ma@web.de>"
 COPY --from=qemustatic /usr/bin/qemu-arm-static /usr/bin/qemu-arm-static
 COPY megasync_ctrl.sh /usr/local/bin
-COPY mdvl-trivial-automatic-update*.deb /var/tmp
+# use old version for oldstable Linux
+COPY old/mdvl-trivial-automatic-update*.deb /var/tmp
 SHELL ["/bin/sh", "-ec"]
-RUN \
+RUN	:; \
 	echo deb $MA_DEBIAN_MIRROR buster main > /etc/apt/sources.list; \
 	echo deb $MA_DEBIAN_MIRROR buster-updates main \
 						>> /etc/apt/sources.list; \
@@ -72,7 +73,12 @@ RUN \
 	rm /etc/apt/sources.list.d/megasync_tmp.list; \
 	# install auto-upgrade script.
 	# rm would be pointless because its in the layers anyways
-	dpkg -i /var/tmp/mdvl-trivial-automatic-update*.deb
+	apt install -y /var/tmp/mdvl-trivial-automatic-update*.deb; \
+	grep -vE ^USE_LTS= /etc/ma_trivial_automatic_update.conf \
+							> /tmp/update.conf; \
+	mv -f /tmp/update.conf /etc/ma_trivial_automatic_update.conf; \
+	echo USE_LTS=1 >> /etc/ma_trivial_automatic_update.conf; \
+	:;
 
 EXPOSE 5900
 HEALTHCHECK --interval=120s --timeout=20s --retries=3 \
