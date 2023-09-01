@@ -5,12 +5,13 @@ title: Running Megasync on armhf using Docker
 keywords: ["docker", "arm"]
 lang: en-US
 date: 2017/04/02 00:33:14
-version: 1.1.2
+author: ["Linux-Fan, Ma_Sys.ma (Ma_Sys.ma@web.de)"]
+x-masysma-version: 1.1.2
 x-masysma-copyright: |
   Copyright (c) 2017, 2019, 2020 Ma_Sys.ma.
   For furhter info send an e-mail to Ma_Sys.ma@web.de.
 x-masysma-repository: https://www.github.com/m7a/lo-megasync
-x-masysma-website: https://masysma.lima-city.de/32/megasync.xhtml
+x-masysma-website: https://masysma.net/32/megasync.xhtml
 x-masysma-owned: 1
 ---
 What is this?
